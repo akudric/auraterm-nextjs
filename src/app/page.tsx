@@ -165,7 +165,9 @@ export default async function HomePage() {
         </div>
       </div>
       {/* Contact Info */}
-      <ContactInfo/>
+      <section id="kontakt">
+        <ContactInfo/>
+      </section>
       {/* Footer */}
       <Footer />
     </div>
