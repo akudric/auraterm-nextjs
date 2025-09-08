@@ -1,16 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import PricingHeader from "./PricingHeader";
-import PlanCard from "./PlanCard";
-import PricingPopup from "./PricingPopup"; // Import the popup component
+import PlanCard from './PlanCard';
+import PricingPopup from './PricingPopup';
+import type { Plan } from '@/types'; // <-- your Plan interface
 
-async function getPricingPlans() {
+async function getPricingPlans(): Promise<Plan[]> {
   const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
   const STRAPI_PRICES_API_CALL = '/api/pricing-options';
 
   if (!STRAPI_API_URL) {
-    throw new Error('STRAPI_API_URL must be defined in your environment variables.');
+    console.warn('NEXT_PUBLIC_STRAPI_URL is not defined. Returning []');
+    return [];
   }
 
   const params = new URLSearchParams({
@@ -27,43 +28,45 @@ async function getPricingPlans() {
   });
 
   const url = `${STRAPI_API_URL}${STRAPI_PRICES_API_CALL}?${params.toString()}`;
-  const headers = { 'Content-Type': 'application/json' };
 
   try {
-    const res = await fetch(url, { headers, cache: 'no-store' });
+    const res = await fetch(url, { headers: { 'Content-Type': 'application/json' }, cache: 'no-store' });
     if (!res.ok) {
-      const errorText = await res.text();
-      throw new Error(`HTTP ${res.status} ${url}\n${errorText}`);
+      console.error(`HTTP ${res.status} ${url}\n${await res.text()}`);
+      return [];
     }
     const data = await res.json();
-    return data.data;
+    // If your Plan type matches Strapi items directly:
+    return (data?.data ?? []) as Plan[];
+
+    // If your Plan is a flattened UI type, map here instead.
   } catch (error) {
-    console.error("Failed to fetch pricing plans:", error);
+    console.error('Failed to fetch pricing plans:', error);
     return [];
   }
 }
 
 export default function Pricing() {
-  const [plans, setPlans] = useState([]);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  // ✅ TYPE YOUR STATE
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
   useEffect(() => {
-    getPricingPlans().then(setPlans);
+    let alive = true;
+    getPricingPlans().then((list) => {
+      if (alive) setPlans(list);
+    });
+    return () => {
+      alive = false;
+    };
   }, []);
 
-  const handleSelectPlan = (plan) => {
-    setSelectedPlan(plan);
-  };
-
-  const handleClosePopup = () => {
-    setSelectedPlan(null);
-  };
+  const handleSelectPlan = (plan: Plan) => setSelectedPlan(plan);
+  const handleClosePopup = () => setSelectedPlan(null);
 
   return (
     <>
-      {selectedPlan && (
-        <PricingPopup plan={selectedPlan} onClose={handleClosePopup} />
-      )}
+      {selectedPlan && <PricingPopup plan={selectedPlan} onClose={handleClosePopup} />}
 
       <section className="container" aria-label="Hero odjeljak: cijene ugradnje">
         <div className="hero hero-img-wrapper relative min-h-[280px] sm:min-h-[360px]">
@@ -71,22 +74,20 @@ export default function Pricing() {
             <source media="(max-width: 480px)" srcSet="/cijenik-header.png" />
             <source media="(max-width: 1024px)" srcSet="/cijenik-header.png" />
             <img
-              srcSet="/cijenik-header.png"
+              src="/cijenik-header.png"
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
           </picture>
 
-          {/* Overlay text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             <h1 className="-translate-y-10 text-2xl sm:text-3xl font-bold text-white">
               Popularni paketi ugradnje
             </h1>
             <button
+              type="button"
               className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-[#19a1e5] text-white font-bold leading-tight whitespace-nowrap shadow-[0_6px_20px_rgba(25,161,229,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(25,161,229,0.45)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#19a1e5]/30 active:translate-y-0"
-              onClick={() =>
-                document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })
-              }
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Pogledaj pakete
             </button>
@@ -98,11 +99,13 @@ export default function Pricing() {
         <h2 id="pricing" className="section-title">Paketi ugradnje</h2>
 
         <section id="pricing-grid" className="grid" aria-live="polite">
-          {plans && plans.length > 0 ? (
-            plans.map(plan => <PlanCard key={plan.id} plan={plan} onSelectPlan={handleSelectPlan} />)
+          {plans.length > 0 ? (
+            plans.map((plan) => (
+              <PlanCard key={String(plan.id)} plan={plan} onSelectPlan={handleSelectPlan} />
+            ))
           ) : (
             <div className="panel">
-              <p>Trenutno nema objavljenih paketa. Dodajte ih u Strapi CMS.</p>
+              <p>Error loading packages</p>
             </div>
           )}
         </section>

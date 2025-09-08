@@ -1,22 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-
-interface PlanAttributes {
-  displayName: string;
-  uidName: string;
-  description: string;
-  price: number | null;
-  pricesufix: string | null;
-  isFeatured: boolean;
-  note: string | null;
-  features: any; // You might want to define a more specific type for features
-}
-
-interface Plan {
-  id: number;
-  attributes: PlanAttributes;
-}
+import { Plan } from "@/types";
 
 interface PricingPopupProps {
   plan: Plan;
