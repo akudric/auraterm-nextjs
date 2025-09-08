@@ -2,7 +2,28 @@
 
 import React, { useState, useEffect } from 'react';
 
-export default function PricingPopup({ plan, onClose }) {
+interface PlanAttributes {
+  displayName: string;
+  uidName: string;
+  description: string;
+  price: number | null;
+  pricesufix: string | null;
+  isFeatured: boolean;
+  note: string | null;
+  features: any; // You might want to define a more specific type for features
+}
+
+interface Plan {
+  id: number;
+  attributes: PlanAttributes;
+}
+
+interface PricingPopupProps {
+  plan: Plan;
+  onClose: () => void;
+}
+
+export default function PricingPopup({ plan, onClose }: PricingPopupProps) {
   const p = plan.attributes || plan;
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);

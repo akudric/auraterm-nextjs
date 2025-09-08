@@ -1,6 +1,27 @@
 import { blocksToHtml } from "@/lib/blocksToHtml";
 
-export default function PlanCard({ plan, onSelectPlan }) { // Add onSelectPlan to props
+interface PlanAttributes {
+  displayName: string;
+  uidName: string;
+  description: string;
+  price: number | null;
+  pricesufix: string | null;
+  isFeatured: boolean;
+  note: string | null;
+  features: any; // You might want to define a more specific type for features
+}
+
+interface Plan {
+  id: number;
+  attributes: PlanAttributes;
+}
+
+interface PlanCardProps {
+  plan: Plan;
+  onSelectPlan: (plan: Plan) => void;
+}
+
+export default function PlanCard({ plan, onSelectPlan }: PlanCardProps) {
   const p = plan.attributes || plan;
   const title = p.displayName || 'Paket';
   const slug = p.uidName || title;
