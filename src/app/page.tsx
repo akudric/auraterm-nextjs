@@ -1,13 +1,14 @@
-// app/page.tsx
 import type { Metadata } from 'next';
 import { strapiFetch } from '@/lib/strapi';
 import ContactForm from '@/components/ContactForm';
 import HeroServices from '@/components/HeroServices';
 import Section from "@/components/Section";
 import AboutUs from "@/components/AboutUs";
+import React from 'react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 
-// ===== Revalidation =====
 export const revalidate = 600; // ISR: 10 minutes
 
 // ===== Metadata =====
@@ -82,46 +83,7 @@ function Stars({ rating = 0 }: { rating?: number }) {
   );
 }
 
-function Header() {
-  return (
-    <header className="border-b border-[#e7eff3] px-4 sm:px-10 py-3">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 text-[#0e171b]">
-          <div className="w-5 h-5" aria-hidden>
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-          <a href="/">
-            <h2 className="text-lg font-bold">AuraTerm</h2>
-          </a>
-        </div>
-        <details className="sm:hidden">
-          <summary className="list-none cursor-pointer" aria-label="Otvori izbornik">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </summary>
-          <nav className="flex flex-col gap-2 mt-4 text-[#0e171b] text-sm font-medium">
-            <a href="#">O nama</a>
-            <a href="#contact">Kontakt</a>
-            <a href="/cijenik" className="font-semibold text-[#19a1e5]">Cijenik</a>
-            <a href="/quote" className="btn w-full !h-10 !px-4">Besplatna procjena</a>
-          </nav>
-        </details>
-        <nav className="hidden sm:flex items-center gap-9 text-sm font-medium text-[#0e171b]">
-          <a href="#">O nama</a>
-          <a href="#contact">Kontakt</a>
-          <a href="/cijenik">Cijenik</a>
-          <a href="/quote" className="bg-[#19a1e5] text-white font-bold px-4 h-10 rounded-lg inline-flex items-center">Besplatna procjena</a>
-        </nav>
-      </div>
-    </header>
-  );
-}
+
 
 export default async function HomePage() {
   const REVIEWS_PATH = process.env.STRAPI_REVIEWS_PATH || "/api/our-reviews";
@@ -162,10 +124,10 @@ export default async function HomePage() {
       </Section>
 
       {/* Reviews */}
-      <div className="px-4 md:px-10">
+      <div className="px-4 sm:px-10">
         <div className="max-w-[960px] mx-auto">   {/* <- keeps it centered */}
           <section>
-            <h2 className="text-[#0e171b] text-[22px] font-bold tracking-[-0.015em] pb-3 pt-5">
+            <h2 className="text-[#0e171b] text-xl sm:text-[22px] font-bold tracking-[-0.015em] pb-3 pt-5">
               Recenzije
             </h2>
 
@@ -202,38 +164,8 @@ export default async function HomePage() {
           </section>
         </div>
       </div>
-
-        {/* Contact */}
-        <Section>
-          <h2 className="text-[#0e171b] text-[22px] font-bold tracking-[-0.015em] pb-3">
-            Kontaktirajte nas
-          </h2>
-          <ContactForm />
-        </Section>
-
-
       {/* Footer */}
-      <footer className="flex justify-center">
-        <div className="flex max-w-[960px] flex-1 flex-col">
-          <footer className="flex flex-col gap-6 px-5 py-10 text-center [container-type:inline-size]">
-            <div className="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around"></div>
-            <div className="flex flex-wrap justify-center gap-4">
-              {['TwitterLogo','FacebookLogo','InstagramLogo'].map((k) => (
-                <a key={k} href="#">
-                  <div className="text-[#4e7f97]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                      <circle cx="128" cy="128" r="96" />
-                    </svg>
-                  </div>
-                </a>
-              ))}
-            </div>
-            <p className="text-[#4e7f97] text-base">
-              © {new Date().getFullYear()} AuraTerm. All rights reserved.
-            </p>
-          </footer>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

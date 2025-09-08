@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-wrap items-end gap-4 px-0 py-3">
+    <div className="flex flex-wrap items-end gap-2 sm:gap-4 px-0 py-2 sm:py-3">
       <label className="flex flex-col min-w-40 flex-1">
         <p className="pb-2">{label}</p>
         {children}
@@ -86,7 +86,6 @@ export default function ContactForm() {
 
   return (
     <>
-      {/* Success modal */}
       {successOpen && (
         <div
           className="fixed inset-0 z-50 grid place-items-center bg-black/40 px-4"
@@ -95,10 +94,21 @@ export default function ContactForm() {
           aria-labelledby="contact-success-title"
         >
           <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
-            <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-emerald-100">
-              {/* check icon */}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
+            {/* Circle + check, check absolutely centered */}
+            <div className="relative mx-auto mb-4 h-12 w-12">
+              <div className="absolute inset-0 rounded-full bg-emerald-100" />
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 text-emerald-600 m-0 p-0"
+              >
+                <path
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M20 6L9 17l-5-5"
+                />
               </svg>
             </div>
             <h3 id="contact-success-title" className="text-center text-lg font-bold text-gray-900">
@@ -118,14 +128,13 @@ export default function ContactForm() {
           </div>
         </div>
       )}
-
       {/* Form */}
       <form className="max-w-[480px]" onSubmit={onSubmit}>
         <Field label="Ime">
           <input
             name="name"
             placeholder="Vaše ime"
-            className="form-input w-full rounded-lg border bg-slate-50 h-14 p-[15px]"
+            className="form-input w-full rounded-lg border bg-slate-50 h-12 sm:h-14 p-3 sm:p-[15px]"
             required
           />
         </Field>
@@ -134,7 +143,7 @@ export default function ContactForm() {
             name="email"
             type="email"
             placeholder="Vaš Email"
-            className="form-input w-full rounded-lg border bg-slate-50 h-14 p-[15px]"
+            className="form-input w-full rounded-lg border bg-slate-50 h-12 sm:h-14 p-3 sm:p-[15px]"
             required
           />
         </Field>
@@ -142,14 +151,14 @@ export default function ContactForm() {
           <input
             name="phone"
             placeholder="Vaš broj mobitela"
-            className="form-input w-full rounded-lg border bg-slate-50 h-14 p-[15px]"
+            className="form-input w-full rounded-lg border bg-slate-50 h-12 sm:h-14 p-3 sm:p-[15px]"
           />
         </Field>
         <Field label="Poruka">
           <textarea
             name="message"
             placeholder="Vaša poruka"
-            className="form-input w-full rounded-lg border bg-slate-50 min-h-36 p-[15px]"
+            className="form-input w-full rounded-lg border bg-slate-50 min-h-32 sm:min-h-36 p-3 sm:p-[15px]"
             required
           />
         </Field>

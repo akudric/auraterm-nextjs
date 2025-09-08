@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Work+Sans:wght@400;500;700;900"
+    />
+
+    <title>Procjena</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-gray-50 group/design-root overflow-x-hidden"
+      style='--select-button-svg: url(&apos;data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(92,122,138)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e&apos;); font-family: "Work Sans", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#eaeef1] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#101618]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <a href = "../index.html">
+              <h2 class="text-[#101618] text-lg font-bold leading-tight tracking-[-0.015em]">AuraTerm</h2>
+            </a>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#101618] text-sm font-medium leading-normal" href="../index.html">Usluge</a>
+              <a class="text-[#101618] text-sm font-medium leading-normal" href="#">O nama</a>
+              <a class="text-[#101618] text-sm font-medium leading-normal" href="../index.html">Kontakt</a>
+            </div>
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#b2d4e5] text-[#101618] text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Besplatna procjena</span>
+            </button>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#101618] tracking-light text-[32px] font-bold leading-tight min-w-72">Besplatna procjena</p></div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Ime</p>
+                <input
+                  placeholder="Unesite Vaše ime"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Adresa</p>
+                <input
+                  placeholder="Unesite Vašu adresu"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Email</p>
+                <input
+                  placeholder="Unesite Vaš email"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Broj mobitela</p>
+                <input
+                  placeholder="Unesite Vaš broj mobitela"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Tip klime</p>
+                <select
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 bg-[image:--select-button-svg] placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                >
+                  <option value="one">Odaberite tip klime</option>
+                  <option value="two">Unutarnja</option>
+                  <option value="three">Vanjska</option>
+                </select>
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Veličina prostora</p>
+                <input
+                  placeholder="Unesite veličinu prostora"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#101618] text-base font-medium leading-normal pb-2">Testni drop-down</p>
+                <select
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#101618] focus:outline-0 focus:ring-0 border border-[#d4dee2] bg-gray-50 focus:border-[#d4dee2] h-14 bg-[image:--select-button-svg] placeholder:text-[#5c7a8a] p-[15px] text-base font-normal leading-normal"
+                >
+                  <option value="one">Izaberite opciju</option>
+                  <option value="two">A</option>
+                  <option value="three">B</option>
+                </select>
+              </label>
+            </div>
+            <div class="flex px-4 py-3 justify-end">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#b2d4e5] text-[#101618] text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Pošaljite</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <footer class="flex justify-center">
+          <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#5c7a8a] text-base font-normal leading-normal min-w-40" href="#">Kontakt broj: 1234-5678</a>
+                <a class="text-[#5c7a8a] text-base font-normal leading-normal min-w-40" href="#">Dostupne lokacije: Karlovac i okolica</a>
+              </div>
+              <p class="text-[#5c7a8a] text-base font-normal leading-normal">© 2025 AuraTerm. All rights reserved.</p>
+            </footer>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

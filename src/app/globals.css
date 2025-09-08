@@ -22,3 +22,171 @@ body {
   justify-content: center;
   min-height: 44px;
 }
+
+:root{
+      --bg:#f6f8fb;
+      --panel:#ffffff;
+      --ink:#1e232c;
+      --muted:#5d6a7a;
+      --line:#e6ebf2;
+      --blue:#1da1f2; /* primary like your CTA */
+      --blue-ink:#0c2236;
+      --radius:18px;
+      --shadow: 0 8px 24px rgba(16,24,40,.08);
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--ink); background:var(--bg);}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding: clamp(16px, 2.5vw, 32px);}
+
+    /* Top spacing to match your layout rhythm */
+    .hero{
+      margin-top: clamp(12px, 1.2vw, 18px);
+      background: #dbe7f3;
+      border-radius: 14px;
+      min-height: clamp(220px, 40vw, 360px);
+      display:grid; place-items:center; text-align:center; position:relative; overflow:hidden;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0; background: rgba(0,0,0,.35);
+    }
+    .hero > div{
+      position:relative; z-index:1; padding: 20px;
+    }
+    .hero h1{
+      margin:0 0 14px; color:#fff; font-weight:900; letter-spacing:.2px;
+      font-size: clamp(26px, 5vw, 46px); line-height:1.05;
+      text-shadow: 0 6px 24px rgba(0,0,0,.35);
+    }
+    .btn.secondary{ background:#ecf6ff; color:#0b3350; border:1px solid #cae7ff; box-shadow:none; }
+
+    /* Section title */
+    .section-title{ margin: 28px 0 8px; font-size: clamp(20px, 3vw, 28px); }
+
+    /* Pricing Grid */
+    .grid{
+      display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card{
+      background: var(--panel);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex; flex-direction:column; gap:10px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 12px 28px rgba(16,24,40,.12); }
+    .badge{
+      display:inline-block; align-self:flex-start; font-size:12px; font-weight:800; letter-spacing:.02em;
+      padding:6px 10px; border-radius:999px; color:#0b3350; background:#e8f4ff; border:1px solid #cde8ff;
+    }
+    .card h3{ margin: 2px 0 0; font-size: 20px; }
+    .desc{ color:var(--muted); margin:0; min-height:38px; }
+    .price{ display:flex; align-items:baseline; gap:8px; }
+    .price .amount{ font-size: 34px; font-weight:900; letter-spacing:-.02em; }
+    .price small{ color:var(--muted) }
+
+    .features{ list-style:none; padding:0; margin:6px 0 0; display:grid; gap:8px; }
+    .features li{ display:flex; gap:8px; align-items:flex-start; color:#2d3a4b; }
+    .tick{
+      width:18px; height:18px; flex:0 0 18px; border-radius:6px;
+      background:#e8f8ef; border:1px solid #bfe8cf;
+    }
+    .fine{ color:var(--muted); font-size:13px; margin:4px 0 0; }
+
+    .card .cta{ margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* Add-ons and FAQ match the rounded, light style */
+    .panel{ background:var(--panel); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding:16px; }
+    .addons .row{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--line); }
+    .addons .row:last-child{ border-bottom:0 }
+    .addons .meta{ color:var(--muted); font-size:14px; }
+
+    details{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; box-shadow: var(--shadow); }
+    summary{ font-weight:700; cursor:pointer; }
+
+    /* Loading skeletons */
+    .skeleton{
+      background: linear-gradient(90deg, #f0f3f8, #e6ebf3, #f0f3f8);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 10px; height: 160px;
+    }
+    @keyframes shimmer{ 0%{background-position:0 0} 100%{background-position:200% 0} }
+
+    /* Small helper for hero image radius like your home page card */
+    .hero-img-wrapper{
+      border-radius: 18px; overflow:hidden;
+    }
+
+    /* Responsive tweaks */
+    @media (prefers-reduced-motion: reduce){
+      .card, .card:hover{ transition:none; transform:none; }
+      .skeleton{ animation:none; }
+    }
+    /* --- Mobile-first polish --- */
+    :root{
+    --space: clamp(12px, 3.5vw, 24px);
+    }
+
+    /* Container breathing room scales on small screens */
+    .container{ padding: var(--space); }
+
+    /* Hero: guaranteed readable + proper ratio on phones */
+    .hero{
+    min-height: min(56vh, 520px);
+    /* remove hardcoded image if you use <picture> below */
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    }
+    .hero > div{ padding: 12px var(--space); }
+    .hero h1{
+    font-size: clamp(22px, 7vw, 46px);
+    line-height: 1.1;
+    margin-bottom: 10px;
+    }
+
+    /* Buttons: thumb-friendly */
+    .btn{ min-height: 44px; padding: 12px 18px; font-size: 16px; }
+    .btn.secondary{ border-width: 1px; }
+
+    /* Pricing grid: never squish cards too narrow */
+    .grid{
+    display:grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    /* Cards: tighter on phones, lighter shadow */
+    .card{ padding: 14px; box-shadow: 0 6px 18px rgba(16,24,40,.08); }
+    .card h3{ font-size: 18px; }
+    .price .amount{ font-size: clamp(22px, 6.5vw, 34px); }
+
+    /* Lists from Rich Text */
+    .rtx ul{ padding-left: 1.1rem; }
+    .rtx li{ margin: 6px 0; }
+
+    /* CTA row inside card: stack on small screens */
+    .card .cta{ flex-direction: column; }
+    .card .cta .btn,
+    .card .cta .btn.secondary{ width: 100%; text-align: center; }
+
+    /* Panels/add-ons/faq spacing */
+    .panel{ padding: 14px; }
+
+    /* Skeletons: smaller so initial load feels snappy on phones */
+    .skeleton{ height: 120px; }
+
+    /* Reduce motion & heavy effects for accessibility */
+    @media (prefers-reduced-motion: reduce){
+    .card, .card:hover{ transition:none; transform:none; }
+    .skeleton{ animation:none; }
+    }
+
+    /* Super small devices (≤ 370px) — force single column */
+    @media (max-width: 370px){
+    .grid{ grid-template-columns: 1fr; }
+    }
