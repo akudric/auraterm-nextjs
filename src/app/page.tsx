@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { strapiFetch } from '@/lib/strapi';
-import ContactForm from '@/components/ContactForm';
 import HeroServices from '@/components/HeroServices';
 import Section from "@/components/Section";
 import AboutUs from "@/components/AboutUs";
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ContactInfo from '@/components/ContactInfo';
 
 
 export const revalidate = 600; // ISR: 10 minutes
@@ -164,6 +164,8 @@ export default async function HomePage() {
           </section>
         </div>
       </div>
+      {/* Contact Info */}
+      <ContactInfo/>
       {/* Footer */}
       <Footer />
     </div>

@@ -13,3 +13,15 @@ export interface Plan {
   id: number;
   attributes: PlanAttributes;
 }
+
+export interface QuotePayload {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  company_website?: string;
+  kind: string;
+  pagePath: string;
+  clientSentAt: string;
+  selected_plan?: string;
+}

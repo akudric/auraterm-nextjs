@@ -40,8 +40,8 @@ async function getPricingPlans(): Promise<Plan[]> {
     return (data?.data ?? []) as Plan[];
 
     // If your Plan is a flattened UI type, map here instead.
-  } catch (error) {
-    console.error('Failed to fetch pricing plans:', error);
+  } catch (error: unknown) {
+    console.error('Failed to fetch pricing plans:', error instanceof Error ? error.message : error);
     return [];
   }
 }
