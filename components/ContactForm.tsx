@@ -1,4 +1,3 @@
-// components/ContactForm.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -14,7 +13,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-export default function ContactForm() {
+// 👇 new: accept `source`
+export default function ContactForm({ source }: { source?: string }) {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -39,6 +39,8 @@ export default function ContactForm() {
     }
 
     const payload = Object.fromEntries(formData.entries());
+
+    // still enforce these
     if (!payload['name'] || !payload['email'] || !payload['message']) {
       setStatus('Molimo ispunite ime, email i poruku.');
       return;
@@ -61,13 +63,15 @@ export default function ContactForm() {
       const res = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // If Strapi expects { data: payload }, swap to: JSON.stringify({ data: payload })
+        // If Strapi expects { data: payload }, change to: JSON.stringify({ data: payload })
         body: JSON.stringify(payload),
       });
 
       const text = await res.text();
       let json: any = {};
-      try { json = JSON.parse(text); } catch {}
+      try {
+        json = JSON.parse(text);
+      } catch {}
 
       if (!res.ok) {
         const msg = json?.error || json?.message || `Neuspješno slanje (status ${res.status}).`;
@@ -94,7 +98,6 @@ export default function ContactForm() {
           aria-labelledby="contact-success-title"
         >
           <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
-            {/* Circle + check, check absolutely centered */}
             <div className="relative mx-auto mb-4 h-12 w-12">
               <div className="absolute inset-0 rounded-full bg-emerald-100" />
               <svg
@@ -128,8 +131,12 @@ export default function ContactForm() {
           </div>
         </div>
       )}
+
       {/* Form */}
       <form className="max-w-[480px]" onSubmit={onSubmit}>
+        {/* 👇 this is what makes Strapi know where it came from */}
+        {source ? <input type="hidden" name="source" value={source} /> : null}
+
         <Field label="Ime">
           <input
             name="name"
@@ -157,6 +164,8 @@ export default function ContactForm() {
         <Field label="Poruka">
           <textarea
             name="message"
+            // 👇 auto-hint the operator what it’s about
+            defaultValue={source ? `Upit za: ${source}\n` : ''}
             placeholder="Vaša poruka"
             className="form-input w-full rounded-lg border bg-slate-50 min-h-32 sm:min-h-36 p-3 sm:p-[15px]"
             required
@@ -182,8 +191,9 @@ export default function ContactForm() {
             {loading ? 'Slanje…' : 'Pošalji'}
           </button>
         </div>
-        {/* screen-reader friendly status line */}
-        <p className="py-2 text-sm" aria-live="polite">{status}</p>
+        <p className="py-2 text-sm" aria-live="polite">
+          {status}
+        </p>
       </form>
     </>
   );

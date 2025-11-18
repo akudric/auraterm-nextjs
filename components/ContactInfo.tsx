@@ -16,7 +16,7 @@ export default function ContactInfo() {
             {/* Adresa */}
             <li>
               <a
-                href="https://maps.google.com/?q=Ulica%20123%2C%2010000%20Zagreb"
+                href="https://www.google.com/maps/place/Ul.+kralja+Zvonimira+1,+47000,+Karlovac"
                 target="_blank"
                 rel="noopener"
                 className="row-link"
@@ -29,14 +29,14 @@ export default function ContactInfo() {
                 </span>
                 <div className="text-col">
                   <p className="label">Adresa</p>
-                  <p className="value">Ulica 123, 10000 Zagreb</p>
+                  <p className="value">Ulica kralja Zvnonimira 1, Karlovac</p>
                 </div>
               </a>
             </li>
 
             {/* Telefon */}
             <li>
-              <a href="tel:+38512345678" className="row-link">
+              <a href="tel+38599319993" className="row-link">
                 <span className="icon-chip">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                     <path strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" d="M22 16.92v2a2 2 0 0 1-2.18 2 19.84 19.84 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.84 19.84 0 0 1 2.09 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.58 2.5a2 2 0 0 1-.45 2.11L7.1 9.91a16 16 0 0 0 6 6l1.58-1.09a2 2 0 0 1 2.11-.45c.8.26 1.64.46 2.5.58A2 2 0 0 1 22 16.92z"/>
@@ -44,7 +44,7 @@ export default function ContactInfo() {
                 </span>
                 <div className="text-col">
                   <p className="label">Telefon</p>
-                  <p className="value">+385 1 234 5678</p>
+                  <p className="value">+385 99319993</p>
                 </div>
               </a>
             </li>

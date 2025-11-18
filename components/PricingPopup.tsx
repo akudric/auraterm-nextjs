@@ -26,11 +26,14 @@ export default function PricingPopup({ plan, onClose }: PricingPopupProps) {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
+    const rawMessage = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
+
     const payload = {
       name: (form.elements.namedItem('name') as HTMLInputElement)?.value || '',
       email: (form.elements.namedItem('email') as HTMLInputElement)?.value || '',
       phone: (form.elements.namedItem('phone') as HTMLInputElement)?.value || '',
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '',
+      // 👇 prepend the plan name so it’s visible in Strapi / email
+      message: `Upit poslan s opcije: ${p.displayName || 'Nepoznato'}\n\n${rawMessage}`,
       company_website: (form.elements.namedItem('company_website') as HTMLInputElement)?.value || '',
       kind: 'general',
       pagePath: window.location.pathname || '/',
