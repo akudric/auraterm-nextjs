@@ -315,16 +315,21 @@ export default function Pricing() {
                     <strong>{item.ImeUsluge}</strong>
                     {item.Jedinica ? <div className="meta">{item.Jedinica}</div> : null}
                   </div>
+
                   <div>
                     <strong>
                       {hasFrom || hasTo ? (
-                        <>
-                          {hasFrom ? `${item.cijena} €` : null}
-                          {hasFrom && hasTo ? ' – ' : null}
-                          {hasTo ? `${item.cijenaDO} €` : null}
-                        </>
+                        item.cijena === item.cijenaDO ? (
+                          `${item.cijena} €`
+                        ) : (
+                          <>
+                            {hasFrom ? `${item.cijena} €` : null}
+                            {hasFrom && hasTo ? " – " : null}
+                            {hasTo ? `${item.cijenaDO} €` : null}
+                          </>
+                        )
                       ) : (
-                        'Na upit'
+                        "Na upit"
                       )}
                     </strong>
                   </div>
@@ -346,9 +351,9 @@ export default function Pricing() {
           <details>
             <summary>Što je uključeno u “standardnu” ugradnju?</summary>
             <p>
-              Montaža unutarnje i vanjske jedinice, do 5 m cijevi i kabela, obloga (trunking),
+              Montaža unutarnje i vanjske jedinice, do 3 m cijevi i kabela, obloga (trunking),
               bušenje i brtvljenje, puštanje u rad te osnovno čišćenje. Spajanje na postojeću
-              utičnicu je uključeno; novi osigurač je dodatna usluga.
+              utičnicu je uključeno.
             </p>
           </details>
           <details>
