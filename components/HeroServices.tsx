@@ -93,7 +93,7 @@ export default function HeroServices() {
                 >
                   <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z" />
                 </svg>
-                <span>Cijenik</span>
+                <span>Cjenik</span>
               </a>
             </div>
           </div>

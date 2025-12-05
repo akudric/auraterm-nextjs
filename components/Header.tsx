@@ -39,7 +39,7 @@ export default function Header() {
         <nav className="hidden sm:flex items-center gap-9 text-sm font-medium text-[#0e171b]">
           <a href="/#about-us" className="hover:text-[#19a1e5] transition-colors">O nama</a>
           <a href="/#kontakt" className="hover:text-[#19a1e5] transition-colors">Kontakt</a>
-          <a href="/pricing" className="hover:text-[#19a1e5] transition-colors">Cijenik</a>
+          <a href="/pricing" className="hover:text-[#19a1e5] transition-colors">Cjenik</a>
           <a href="/quote" className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-xl bg-[#19a1e5] text-white font-bold leading-tight whitespace-nowrap shadow-[0_6px_20px_rgba(25,161,229,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(25,161,229,0.45)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#19a1e5]/30 active:translate-y-0">
             Besplatna procjena
           </a>
@@ -56,7 +56,7 @@ export default function Header() {
         <div className="px-4 py-3 flex flex-col gap-2">
           <a href="/#about-us" className="hover:text-[#19a1e5] transition-colors">O nama</a>
           <a href="/#kontakt" className="hover:text-[#19a1e5] transition-colors">Kontakt</a>
-          <a href="/pricing" className="font-semibold text-[#19a1e5] hover:text-blue-700 transition-colors">Cijenik</a>
+          <a href="/pricing" className="font-semibold text-[#19a1e5] hover:text-blue-700 transition-colors">Cjenik</a>
           <a href="/quote" className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-xl bg-[#19a1e5] text-white font-bold leading-tight whitespace-nowrap shadow-[0_6px_20px_rgba(25,161,229,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(25,161,229,0.45)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#19a1e5]/30 active:translate-y-0 w-full">Besplatna procjena</a>
         </div>
       </nav>
