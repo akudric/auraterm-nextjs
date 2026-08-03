@@ -6,6 +6,7 @@ import AboutUs from "@/components/AboutUs";
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ContactForm from '@/components/ContactForm';
 import ContactInfo from '@/components/ContactInfo';
 
 
@@ -164,6 +165,22 @@ export default async function HomePage() {
           </section>
         </div>
       </div>
+      {/* Contact form */}
+      <Section>
+        <section aria-labelledby="contact-form-heading" className="mx-auto max-w-[960px] py-8 sm:py-12">
+          <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
+            <h2 id="contact-form-heading" className="text-2xl font-bold text-[#0e171b]">
+              Pošaljite nam poruku
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Imate pitanje ili trebate ponudu? Javite nam se i odgovoriti ćemo vam u najkraćem roku.
+            </p>
+            <div className="mt-4">
+              <ContactForm source="Početna stranica" />
+            </div>
+          </div>
+        </section>
+      </Section>
       {/* Contact Info */}
       <section id="kontakt">
         <ContactInfo/>
