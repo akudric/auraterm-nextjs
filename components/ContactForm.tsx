@@ -165,7 +165,6 @@ export default function ContactForm({ source }: { source?: string }) {
           <textarea
             name="message"
             // 👇 auto-hint the operator what it’s about
-            defaultValue={source ? `Upit za: ${source}\n` : ''}
             placeholder="Vaša poruka"
             className="form-input w-full rounded-lg border bg-slate-50 min-h-32 sm:min-h-36 p-3 sm:p-[15px]"
             required
