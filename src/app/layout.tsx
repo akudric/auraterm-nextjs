@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { Work_Sans, Noto_Sans } from "next/font/google";
 import "./globals.css";
-
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-  weight: ["400", "500", "700", "900"],
-});
-
-const notoSans = Noto_Sans({
-  subsets: ["latin"],
-  variable: "--font-noto-sans",
-  weight: ["400", "500", "700", "900"],
-});
 
 export const metadata: Metadata = {
   title: "AuraTerm",
@@ -26,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="hr">
-      <body
-        className={`${workSans.variable} ${notoSans.variable} antialiased`}
-      >
+      <body className="antialiased">
         {children}
       </body>
     </html>
