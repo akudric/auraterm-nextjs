@@ -1,27 +1,36 @@
-export interface PlanAttributes {
-  displayName: string;
-  uidName: string;
-  description: string;
-  price: number | null;
-  pricesufix: string | null;
-  isFeatured: boolean;
-  note: string | null;
-  features: any; // You might want to define a more specific type for features
+export interface BasePrice {
+  /** VAT-inclusive historical price, confirmed by the business. */
+  price: number;
+  date: string;
 }
 
 export interface Plan {
   id: number;
-  attributes: PlanAttributes;
+  displayName: string;
+  uidName: string | null;
+  description: string;
+  price: number | null;
+  netPrice: number | null;
+  basePrice: BasePrice | null;
+  isFeatured: boolean;
+  note: string | null;
+  features: string[];
 }
 
-export interface QuotePayload {
+export interface AdditionalExpense {
+  id: number;
+  ImeUsluge: string;
+  Jedinica: string | null;
+  cijena: number | null;
+  cijenaDO: number | null;
+  netPrice: number | null;
+  basePrice: BasePrice | null;
+}
+
+export interface Review {
+  id: number;
   name: string;
-  email: string;
-  phone?: string;
+  date: string;
   message: string;
-  company_website?: string;
-  kind: string;
-  pagePath: string;
-  clientSentAt: string;
-  selected_plan?: string;
+  rating: number;
 }

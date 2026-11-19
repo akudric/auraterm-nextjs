@@ -1,166 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PlanCard from './PlanCard';
 import PricingPopup from './PricingPopup';
-import type { Plan } from '@/types'; // your existing Plan interface
+import ServicePrice from './ServicePrice';
+import type { Plan } from '@/types';
+import { regularPlans, multiSplitPlans, addons } from '@/lib/site-content';
+import archivedPriceLists from '@/data/price-list-archive.json';
 
-// ==========================
-// STRAPI ENDPOINTS – CHANGE THESE IF YOUR API NAMES ARE DIFFERENT
-// ==========================
-const REGULAR_ENDPOINT = '/api/pricing-options';            // mono / regular
-const MULTISPLIT_ENDPOINT = '/api/pricing-option-multi-splits';   // multi-split (change to your real endpoint)
-const ADDONS_ENDPOINT = '/api/additional-options';         // dodatni radovi (change to your real endpoint)
+const priceListArchive = archivedPriceLists as { filename: string; publishedAt: string; revision: number }[];
 
-// ==========================
-// TYPES
-// ==========================
-type AdditionalExpense = {
-  id: number | string;
-  ImeUsluge: string;
-  Jedinica?: string | null;
-  cijena: number | null;
-  cijenaDO: number | null;
-};
-
-// ==========================
-// HELPERS
-// ==========================
-
-function normalizeAddon(item: any): AdditionalExpense {
-  const attrs = item?.attributes ?? item ?? {};
-
-  const ImeUsluge =
-    attrs.ImeUsluge ??
-    attrs.imeUsluge ??
-    attrs.imeusluge ??
-    attrs.ime_usluge ??
-    '';
-
-  const Jedinica =
-    attrs.Jedinica ??
-    attrs.jedinica ??
-    attrs.JedinicaUsluge ??
-    attrs.jedinica_usluge ??
-    null;
-
-  const cijenaRaw =
-    attrs.cijena ??
-    attrs.Cijena ??
-    attrs.cijena_od ??
-    attrs.cijenaOd ??
-    null;
-
-  const cijenaDORaw =
-    attrs.cijenaDO ??
-    attrs.cijenado ??
-    attrs.cijena_do ??
-    attrs.cijenaDo ??
-    null;
-
-  const cijena =
-    cijenaRaw === null || cijenaRaw === undefined || cijenaRaw === ''
-      ? null
-      : Number(cijenaRaw);
-
-  const cijenaDO =
-    cijenaDORaw === null || cijenaDORaw === undefined || cijenaDORaw === ''
-      ? null
-      : Number(cijenaDORaw);
-
-  return {
-    id: item.id ?? attrs.id,
-    ImeUsluge,
-    Jedinica,
-    cijena,
-    cijenaDO,
-  };
-}
-
-async function fetchPlans(endpoint: string): Promise<Plan[]> {
-  const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-  if (!STRAPI_API_URL) {
-    console.warn('NEXT_PUBLIC_STRAPI_URL is not defined. Returning []');
-    return [];
-  }
-
-  const params = new URLSearchParams({
-    'sort[0]': 'sort:asc',
-    'pagination[pageSize]': '24',
-    'fields[0]': 'displayName',
-    'fields[1]': 'uidName',
-    'fields[2]': 'description',
-    'fields[3]': 'price',
-    'fields[4]': 'pricesufix',
-    'fields[5]': 'isFeatured',
-    'fields[6]': 'note',
-    'fields[7]': 'features',
-  });
-
-  const url = `${STRAPI_API_URL}${endpoint}?${params.toString()}`;
-
-  try {
-    const res = await fetch(url, {
-      headers: { 'Content-Type': 'application/json' },
-      cache: 'no-store',
-    });
-
-    if (!res.ok) {
-      console.error(`HTTP ${res.status} ${url}\n${await res.text()}`);
-      return [];
-    }
-
-    const json = await res.json();
-    return (json?.data ?? []) as Plan[];
-  } catch (err) {
-    console.error('Failed to fetch pricing plans from', endpoint, err);
-    return [];
-  }
-}
-
-async function fetchAdditionalExpenses(): Promise<AdditionalExpense[]> {
-  const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-  if (!STRAPI_API_URL) return [];
-
-  const url = `${STRAPI_API_URL}${ADDONS_ENDPOINT}?pagination[pageSize]=50&sort[0]=id:asc`;
-
-  try {
-    const res = await fetch(url, {
-      headers: { 'Content-Type': 'application/json' },
-      cache: 'no-store',
-    });
-    if (!res.ok) {
-      console.error(`HTTP ${res.status} ${url}\n${await res.text()}`);
-      return [];
-    }
-    const json = await res.json();
-    return (json?.data ?? []).map((item: any) => normalizeAddon(item));
-  } catch (err) {
-    console.error('Failed to fetch additional expenses', err);
-    return [];
-  }
-}
-
-// pick a multi-split plan to show in popup (prefer featured → otherwise first)
-function pickPreferredMultiSplit(plans: Plan[]): Plan | null {
-  if (!plans || plans.length === 0) return null;
-
-  // if it's Strapi-shaped: plans[i].attributes.isFeatured
-  const featured = plans.find((p: any) => p?.attributes?.isFeatured || (p as any).isFeatured);
-  if (featured) return featured;
-
-  return plans[0];
-}
-
-// ==========================
-// SIMPLE CARD FOR MULTI-SPLIT (NO BUTTON)
-// ==========================
 function MultiSplitCard({ plan }: { plan: Plan }) {
-  const attrs = (plan as any).attributes ?? plan;
+  const attrs = plan;
   const name = attrs.displayName ?? 'Multi-split paket';
   const desc = attrs.description ?? '';
-  const price = attrs.price ?? null;
-  const priceSufix = attrs.pricesufix ?? '';
 
   return (
     <article className="panel flex flex-col gap-3">
@@ -168,16 +21,7 @@ function MultiSplitCard({ plan }: { plan: Plan }) {
         <h3 className="text-lg font-semibold">{name}</h3>
         {desc ? <p className="text-sm text-gray-500 mt-1">{desc}</p> : null}
       </header>
-      <div>
-        {price !== null && price !== undefined ? (
-          <p className="text-2xl font-bold">
-            {price} €
-            {priceSufix ? <span className="text-sm text-gray-500 ml-1">{priceSufix}</span> : null}
-          </p>
-        ) : (
-          <p className="text-gray-400 text-sm">Cijena na upit</p>
-        )}
-      </div>
+      <ServicePrice price={plan.price} netPrice={plan.netPrice} basePrice={plan.basePrice} />
     </article>
   );
 }
@@ -186,35 +30,13 @@ function MultiSplitCard({ plan }: { plan: Plan }) {
 // COMPONENT
 // ==========================
 export default function Pricing() {
-  const [regularPlans, setRegularPlans] = useState<Plan[]>([]);
-  const [multiSplitPlans, setMultiSplitPlans] = useState<Plan[]>([]);
-  const [addons, setAddons] = useState<AdditionalExpense[]>([]);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
-
-  useEffect(() => {
-    let alive = true;
-
-    Promise.all([
-      fetchPlans(REGULAR_ENDPOINT),
-      fetchPlans(MULTISPLIT_ENDPOINT),
-      fetchAdditionalExpenses(),
-    ]).then(([regular, multi, extras]) => {
-      if (!alive) return;
-      setRegularPlans(regular);
-      setMultiSplitPlans(multi);
-      setAddons(extras);
-    });
-
-    return () => {
-      alive = false;
-    };
-  }, []);
 
   const handleSelectPlan = (plan: Plan) => setSelectedPlan(plan);
   const handleClosePopup = () => setSelectedPlan(null);
 
   // preferred multi-split (for the single button)
-  const preferredMulti = pickPreferredMultiSplit(multiSplitPlans);
+  const preferredMulti = multiSplitPlans.find((plan) => plan.isFeatured) ?? multiSplitPlans[0];
 
   return (
     <>
@@ -252,6 +74,31 @@ export default function Pricing() {
       <main className="container">
         {/* ----- REGULAR / MONO ----- */}
         <h2 id="pricing" className="section-title">Paketi ugradnje – mono split</h2>
+        <p className="text-sm text-gray-700 mb-4">
+          Sve maloprodajne cijene uključuju PDV. Bazna cijena prikazuje cijenu koja je vrijedila na navedeni datum.
+        </p>
+        {priceListArchive.length > 0 && (
+          <div className="mb-6 text-sm">
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <a href="/cjenik-excel.csv" download={priceListArchive[0].filename.replace(/\.csv$/, '_EXCEL.csv')} className="text-sky-700 underline font-semibold">
+                Preuzmi cjenik za Excel (CSV)
+              </a>
+              <a href="/cjenik.csv" download={priceListArchive[0].filename} className="text-sky-700 underline">
+                Strojno čitljivi cjenik (CSV)
+              </a>
+            </div>
+            {priceListArchive.length > 1 && (
+              <details className="mt-3">
+                <summary>Arhiva cjenika</summary>
+                <ul className="mt-2 space-y-2">
+                  {priceListArchive.slice(1).map(entry => (
+                    <li key={entry.filename}><a className="underline" href={`/cjenici/${entry.filename}`} download>{entry.filename}</a></li>
+                  ))}
+                </ul>
+              </details>
+            )}
+          </div>
+        )}
 
         <section id="pricing-grid-mono" className="grid" aria-live="polite">
           {regularPlans.length > 0 ? (
@@ -300,42 +147,21 @@ export default function Pricing() {
 
         {/* ----- DODATNI RADOVI ----- */}
         <h2 className="section-title" style={{ marginTop: '32px' }}>
-          Dodatni radovi i materijal
+          Dodatni radovi, materijali i servis
         </h2>
 
         <section className="panel addons" id="addons">
           {addons.length > 0 ? (
-            addons.map((item) => {
-              const hasFrom = item.cijena != null;
-              const hasTo = item.cijenaDO != null;
-
-              return (
+            addons.map((item) => (
                 <div key={item.id} className="row">
                   <div>
                     <strong>{item.ImeUsluge}</strong>
                     {item.Jedinica ? <div className="meta">{item.Jedinica}</div> : null}
                   </div>
 
-                  <div>
-                    <strong>
-                      {hasFrom || hasTo ? (
-                        item.cijena === item.cijenaDO ? (
-                          `${item.cijena} €`
-                        ) : (
-                          <>
-                            {hasFrom ? `${item.cijena} €` : null}
-                            {hasFrom && hasTo ? " – " : null}
-                            {hasTo ? `${item.cijenaDO} €` : null}
-                          </>
-                        )
-                      ) : (
-                        "Na upit"
-                      )}
-                    </strong>
-                  </div>
+                  <ServicePrice price={item.cijena} netPrice={item.netPrice} basePrice={item.basePrice} compact />
                 </div>
-              );
-            })
+            ))
           ) : (
             <div className="row">
               <div>

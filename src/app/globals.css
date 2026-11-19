@@ -103,6 +103,13 @@ body {
     .panel{ background:var(--panel); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding:16px; }
     .addons .row{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--line); }
     .addons .row:last-child{ border-bottom:0 }
+    .addons .row{ gap:16px; }
+    .addons .row > :first-child{ flex:1; min-width:0; }
+    .addons .row > :last-child{ flex:0 0 auto; max-width:50%; }
+    @media (max-width:640px){
+      .addons .row{ flex-direction:column; align-items:flex-start; gap:8px; }
+      .addons .row > :last-child{ max-width:100%; }
+    }
     .addons .meta{ color:var(--muted); font-size:14px; }
 
     details{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; box-shadow: var(--shadow); }

@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test tests/*.test.cjs",
+    "prices:update": "node scripts/update-price-list.cjs"
   },
   "dependencies": {
     "lucide-react": "^0.540.0",
     "next": "^14.2.32",
+    "nodemailer": "^10.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -18,6 +21,7 @@
     "@tailwindcss/container-queries": "0.1.1",
     "@tailwindcss/forms": "0.5.10",
     "@types/node": "20.11.30",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "18.2.66",
     "@types/react-dom": "18.2.22",
     "autoprefixer": "10.4.20",

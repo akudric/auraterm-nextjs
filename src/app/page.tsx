@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { strapiFetch } from '@/lib/strapi';
+import { reviews } from '@/lib/site-content';
 import HeroServices from '@/components/HeroServices';
 import Section from "@/components/Section";
 import AboutUs from "@/components/AboutUs";
@@ -10,7 +10,6 @@ import ContactForm from '@/components/ContactForm';
 import ContactInfo from '@/components/ContactInfo';
 
 
-export const revalidate = 600; // ISR: 10 minutes
 
 // ===== Metadata =====
 export const metadata: Metadata = {
@@ -39,31 +38,6 @@ function avatarStyle(seed: string) {
 }
 // =================================
 
-type ReviewFlat = {
-  id: number;
-  name?: string;
-  message?: string;
-  rating?: number;
-  date?: string;
-  createdAt?: string;
-  publishedAt?: string;
-};
-type ReviewAttr = { id: number; attributes: ReviewFlat };
-type ReviewsResponse = { data: Array<ReviewFlat | ReviewAttr> };
-
-function normReview(item: ReviewFlat | ReviewAttr): Required<ReviewFlat> {
-  const a: ReviewFlat = ("attributes" in item ? (item as ReviewAttr).attributes : (item as ReviewFlat)) || {};
-  return {
-    id: (item as any).id,
-    name: a.name ?? "Anonymous",
-    message: a.message ?? "",
-    rating: typeof a.rating === "number" ? a.rating : 4,
-    date: a.date ?? a.publishedAt ?? a.createdAt ?? "",
-    createdAt: a.createdAt ?? "",
-    publishedAt: a.publishedAt ?? "",
-  };
-}
-
 function Stars({ rating = 0 }: { rating?: number }) {
   const r = Math.max(0, Math.min(5, Math.round(rating)));
   return (
@@ -86,30 +60,7 @@ function Stars({ rating = 0 }: { rating?: number }) {
 
 
 
-export default async function HomePage() {
-  const REVIEWS_PATH = process.env.STRAPI_REVIEWS_PATH || "/api/our-reviews";
-  const params = new URLSearchParams({
-    "sort[0]": "date:desc",
-    "pagination[pageSize]": "25",
-  });
-
-  let reviews: ReturnType<typeof normReview>[] = [];
-  try {
-    const data = await strapiFetch<ReviewsResponse>(
-      `${REVIEWS_PATH}?${params.toString()}`,
-      600,
-      ["reviews:list"]
-    );
-    const items = Array.isArray(data?.data) ? data.data : [];
-    reviews = items.map(normReview);
-
-    // Debug (terminal)
-    console.log("REVIEWS count:", reviews.length);
-  } catch (e) {
-    console.error("REVIEWS fetch error:", e);
-    reviews = [];
-  }
-
+export default function HomePage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       <Header />
