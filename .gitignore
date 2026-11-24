@@ -39,6 +39,8 @@ yarn-error.log*
 /Cjenik usluga 2026.docx
 /mail postavke.docx
 /*.csv
+/.preview-browser/
+/.design-preview/
 
 # vercel
 .vercel

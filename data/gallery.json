@@ -1,0 +1,416 @@
+[
+    {
+        "id":  "rad-003",
+        "width":  1600,
+        "height":  1116,
+        "alt":  "Zidna unutarnja jedinica u stambenom prostoru"
+    },
+    {
+        "id":  "rad-002",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica postavljena na pročelju kuće"
+    },
+    {
+        "id":  "rad-021",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Tehničar uz dvije vanjske jedinice"
+    },
+    {
+        "id":  "rad-005",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica iznad prozora u dnevnom boravku"
+    },
+    {
+        "id":  "rad-025",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica na bočnom pročelju kuće"
+    },
+    {
+        "id":  "rad-001",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Čišćenje unutarnje jedinice sa zaštitnom navlakom"
+    },
+    {
+        "id":  "rad-004",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica i instalacijski kanal na pročelju"
+    },
+    {
+        "id":  "rad-006",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Mjerenje parametara sustava digitalnim manometrom"
+    },
+    {
+        "id":  "rad-007",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Priprema zida za prolaz instalacija"
+    },
+    {
+        "id":  "rad-008",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica postavljena iznad prozora"
+    },
+    {
+        "id":  "rad-009",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Provođenje instalacija uz vanjski zid"
+    },
+    {
+        "id":  "rad-010",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Rad na vanjskoj jedinici klimatizacijskog uređaja"
+    },
+    {
+        "id":  "rad-011",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Dvije vanjske jedinice na zidnim nosačima"
+    },
+    {
+        "id":  "rad-012",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Rad na vanjskim jedinicama u večernjim satima"
+    },
+    {
+        "id":  "rad-013",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Digitalni mjerni instrument spojen na klimatizacijski sustav"
+    },
+    {
+        "id":  "rad-014",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Provjera sustava uz vanjsku jedinicu"
+    },
+    {
+        "id":  "rad-015",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Priprema bakrenih cijevi za unutarnju jedinicu"
+    },
+    {
+        "id":  "rad-016",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Instalacijske cijevi provedene kroz zid"
+    },
+    {
+        "id":  "rad-017",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Montaža vanjske jedinice na pročelju"
+    },
+    {
+        "id":  "rad-018",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Otvorena unutarnja jedinica tijekom radova"
+    },
+    {
+        "id":  "rad-019",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjske jedinice uz kuću s drvenom oblogom"
+    },
+    {
+        "id":  "rad-020",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Servis unutarnje jedinice s ljestava"
+    },
+    {
+        "id":  "rad-022",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Unutarnja jedinica iznad vrata"
+    },
+    {
+        "id":  "rad-023",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica na zidu dnevnog boravka"
+    },
+    {
+        "id":  "rad-024",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica u kutu prostorije"
+    },
+    {
+        "id":  "rad-026",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Podna unutarnja jedinica ispod prozora"
+    },
+    {
+        "id":  "rad-027",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Postavljanje vanjske jedinice s ljestava"
+    },
+    {
+        "id":  "rad-028",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Detalj otvorene unutarnje jedinice"
+    },
+    {
+        "id":  "rad-029",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica sa skinutim prednjim poklopcem"
+    },
+    {
+        "id":  "rad-030",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Radovi u prostoriji uz balkonska vrata"
+    },
+    {
+        "id":  "rad-031",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica iznad prozora uz vrt"
+    },
+    {
+        "id":  "rad-032",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Unutarnja jedinica u svijetloj prostoriji"
+    },
+    {
+        "id":  "rad-033",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica u natkrivenom prolazu"
+    },
+    {
+        "id":  "rad-034",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Klimatizacijska jedinica na pročelju obiteljske kuće"
+    },
+    {
+        "id":  "rad-035",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Postavljanje vanjske jedinice uz prozor"
+    },
+    {
+        "id":  "rad-036",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica s dovršenim instalacijskim kanalom"
+    },
+    {
+        "id":  "rad-037",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica uz balkon"
+    },
+    {
+        "id":  "rad-038",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica ispod kosog krova"
+    },
+    {
+        "id":  "rad-039",
+        "width":  900,
+        "height":  1600,
+        "alt":  "Ljestve pripremljene za rad na terenu"
+    },
+    {
+        "id":  "rad-040",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica na bočnoj strani kuće"
+    },
+    {
+        "id":  "rad-041",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Instalacijski kanal na pročelju zgrade"
+    },
+    {
+        "id":  "rad-042",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Rad na električnim spojevima uređaja"
+    },
+    {
+        "id":  "rad-043",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica u natkrivenom kutu"
+    },
+    {
+        "id":  "rad-044",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Detalj instalacijskih spojeva vanjske jedinice"
+    },
+    {
+        "id":  "rad-045",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Tehničar postavlja vanjsku jedinicu uz prozor"
+    },
+    {
+        "id":  "rad-046",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Zapakirana klimatizacijska oprema"
+    },
+    {
+        "id":  "rad-047",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica na bijelom zidu"
+    },
+    {
+        "id":  "rad-048",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Rad s ljestava na vanjskoj jedinici"
+    },
+    {
+        "id":  "rad-049",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica na balkonu zgrade"
+    },
+    {
+        "id":  "rad-050",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Unutarnja jedinica uz zavjese"
+    },
+    {
+        "id":  "rad-051",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica na pročelju uz drveni prozor"
+    },
+    {
+        "id":  "rad-052",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica na žutom pročelju"
+    },
+    {
+        "id":  "rad-053",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Unutarnja jedinica iznad vrata"
+    },
+    {
+        "id":  "rad-054",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Instalacijski priključci vanjske jedinice"
+    },
+    {
+        "id":  "rad-055",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Detalj istrošene izolacije na instalacijskim cijevima"
+    },
+    {
+        "id":  "rad-056",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Detalj oštećenog prolaza instalacija kroz zid"
+    },
+    {
+        "id":  "rad-057",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Predstavljanje klimatizacijske opreme"
+    },
+    {
+        "id":  "rad-058",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Izloženi modeli klimatizacijskih uređaja"
+    },
+    {
+        "id":  "rad-059",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Pripremljene instalacije za unutarnju jedinicu"
+    },
+    {
+        "id":  "rad-060",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica snimljena u večernjim satima"
+    },
+    {
+        "id":  "rad-061",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Bušenje zida za prolaz instalacija"
+    },
+    {
+        "id":  "rad-062",
+        "width":  1199,
+        "height":  1600,
+        "alt":  "Rad na pročelju s ljestava"
+    },
+    {
+        "id":  "rad-063",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica postavljena na metalnu konstrukciju"
+    },
+    {
+        "id":  "rad-064",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica Hitachi na zidnom nosaču"
+    },
+    {
+        "id":  "rad-065",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Vanjska jedinica u natkrivenom prostoru"
+    },
+    {
+        "id":  "rad-066",
+        "width":  1600,
+        "height":  1200,
+        "alt":  "Detalj ventilatora vanjske jedinice"
+    },
+    {
+        "id":  "rad-067",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Vanjska jedinica na drvenom objektu"
+    },
+    {
+        "id":  "rad-068",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Unutarnja jedinica u prostoriji s drvenom oblogom"
+    },
+    {
+        "id":  "rad-069",
+        "width":  1200,
+        "height":  1600,
+        "alt":  "Rad s ljestava na sustavu s više vanjskih jedinica"
+    }
+]
